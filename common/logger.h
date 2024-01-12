@@ -17,7 +17,15 @@
 #include <iomanip>
 #include <chrono>
 #include <mutex>
+#include <iostream>
+#include <cstdio>
+#include <cstdarg>
+#include <sstream>
+#include <iomanip>
+#include <chrono>
+#include <mutex>
 
+#define LOG_MAX_SIZE 50 * 1024 * 1024 // 50MB
 /*
 ** 日志级别
 */
@@ -59,6 +67,13 @@ private:
     ~logger();
 
     bool log_init(void);
+
+    std::mutex log_mtx;
+    std::stringstream logfile;
+    std::stringstream logfilebak;
+
+
+    std::string getCurrentTime(void);
 
 public:
     static logger &getInstance(void);

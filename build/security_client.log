@@ -1,0 +1,16 @@
+[2024-01-12-16:55:54.356264] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:10] [main] --------Start security server--------
+[2024-01-12-16:55:54.356368] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:13] [main] --------init server--------
+[2024-01-12-16:55:54.356397] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:20] [main] --------start server--------
+[2024-01-12-16:55:54.356429] [INFO] [/home/byd/Desktop/recurrent/common/my_socket.cpp:40] [Create] socket id: 5
+[2024-01-12-16:55:54.356549] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:26] [main] --------massage loop--------
+[2024-01-12-16:56:06.491919] [INFO] [/home/byd/Desktop/recurrent/client/socket_client.cpp:46] [ConnectServer] connect success, socket(4).
+[2024-01-12-16:56:06.492074] [INFO] [/home/byd/Desktop/recurrent/server/security_server.cpp:47] [Execute] cmd id: 0
+[2024-01-12-16:56:06.492130] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-16:56:06.492221] [INFO] [/home/byd/Desktop/recurrent/server/security_server.cpp:47] [Execute] cmd id: 2
+[2024-01-12-16:56:06.492285] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-16:56:06.492367] [INFO] [/home/byd/Desktop/recurrent/server/security_server.cpp:47] [Execute] cmd id: 5
+[2024-01-12-16:56:06.492480] [INFO] [/home/byd/Desktop/recurrent/server/security_server.cpp:47] [Execute] cmd id: 3
+[2024-01-12-16:56:06.492519] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-16:56:06.492572] [ERROR] [/home/byd/Desktop/recurrent/server/socket_server.cpp:145] [MonitorEvent] 6 read data failed!
+[2024-01-12-16:56:06.492582] [INFO] [/home/byd/Desktop/recurrent/server/security_server.cpp:47] [Execute] cmd id: 1
+[2024-01-12-16:56:06.492618] [ERROR] [/home/byd/Desktop/recurrent/server/socket_server.cpp:145] [MonitorEvent] 6 read data failed!
