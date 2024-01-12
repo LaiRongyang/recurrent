@@ -1,9 +1,10 @@
 #include <string.h>
 #include "securityservice.h"
-#include "security_request.h"
+#include "./../client/security_request.h"
+#include "./../common/logger.h"
 unsigned int CSS_open_service()
 {
-    //TODO log
+    logger::getInstance().logOutStart();
     return CSecurityRequest::getInstance().OpenDevice();
 }
 

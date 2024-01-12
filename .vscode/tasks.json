@@ -1,0 +1,73 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "build demo",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-std=c++11",
+			
+				"-g",
+				"${workspaceFolder}/demo/test_random.cpp",
+				"${workspaceFolder}/security/securityservice.cpp",
+				"${workspaceFolder}/common/cyber_logger.cpp",
+				"${workspaceFolder}/common/logger.cpp",
+				"${workspaceFolder}/common/message.cpp",
+				"${workspaceFolder}/client/security_client.cpp",
+				"${workspaceFolder}/client/security_request.cpp",
+				"${workspaceFolder}/client/socket_client.cpp",
+				"${workspaceFolder}/common/my_socket.cpp",
+				"-o",
+				"${workspaceFolder}/build/test_random"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		}
+		,
+		{
+			"type": "cppbuild",
+			"label": "build css-server",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-std=c++11",
+				"-g",
+				"${workspaceFolder}/server/security_impl.cpp",
+				"${workspaceFolder}/server/security_server.cpp",
+				"${workspaceFolder}/server/security_session.cpp",
+				"${workspaceFolder}/server/server_main.cpp",
+				"${workspaceFolder}/server/server_manager.cpp",
+				"${workspaceFolder}/server/socket_server.cpp",
+				"${workspaceFolder}/common/cyber_logger.cpp",
+				"${workspaceFolder}/common/logger.cpp",
+				"${workspaceFolder}/common/message.cpp",
+				"${workspaceFolder}/common/my_socket.cpp",
+				"-o",
+				"${workspaceFolder}/build/css-server",
+				"-lpthread"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		}
+	]
+}

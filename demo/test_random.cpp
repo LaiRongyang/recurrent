@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "ctype.h"
-#include "/home/byd/Desktop/test_security/security/securityservice.h"
+#include "./../security/securityservice.h"
 
 void helpmenu(void)
 {
@@ -17,42 +17,15 @@ void helpmenu(void)
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2)
-    {
-        printf("\n");
-        printf("--------------------------\n");
-        helpmenu();
-        exit(0);
-    }
+
 
     int ch;
     int nKeyLen = 16;
     int nLenFalg = 0;
 
-    while ((ch = getopt(argc, argv, "l:")) != -1)
-    {
-        switch (ch)
-        {
-        case 'l':
-            if (strncmp(optarg, "0x", 2) == 0)
-                sscanf(optarg, "%x", &nKeyLen);
-            else
-                sscanf(optarg, "%d", &nKeyLen);
-            // if ((16 != nKeyLen) && (24 != nKeyLen) && (32 != nKeyLen))
-            // {
-            //     printf("wrong: random length(%d) within 16, 24, 32\n", nKeyLen);
-            //     exit(0);
-            // }
-            nLenFalg = 1;
-            break;
-        case 'h':
-        default:
-            helpmenu();
-            exit(0);
-            break;
-        }
-    }
 
+    nKeyLen = 128;
+    nLenFalg = 1;
     if (0 == nLenFalg)
     {
         printf("falg: l: %d\n", nLenFalg);
