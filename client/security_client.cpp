@@ -46,7 +46,7 @@ std::uint32_t CSecurityClient::Execute(std::int32_t req, std::vector<uint8_t> &i
     {
         CYBERLOG_WARN("memset failed.");
     }
-    printf("cmd id: %d", req);
+    CYBERLOG_INFO("cmd id: %d", req);
 
     LPREQHEAD lpReq = reinterpret_cast<LPREQHEAD>(pBuf);
     lpReq->msg_head.msg_type = static_cast<std::int32_t>(EN_MSG_TYPE_REQ);
@@ -104,7 +104,7 @@ std::uint32_t CSecurityClient::Execute(std::int32_t req, std::vector<uint8_t> &i
 
     out.resize(lpResp->data_len);
 
-    if (out.size() == lpResp->data_len)
+    if (lpResp->data_len!= 0  && out.size() == lpResp->data_len)
     {
         if (nullptr == memcpy((void*)out.data(), (void *)(lpResp + 1), lpResp->data_len))
         {

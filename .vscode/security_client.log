@@ -1,0 +1,9 @@
+[2024-01-12-17:05:50.443762] [INFO] [/home/byd/Desktop/recurrent/client/socket_client.cpp:46] [ConnectServer] connect success, socket(4).
+[2024-01-12-17:05:53.718459] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 0
+[2024-01-12-17:06:38.659454] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-17:06:40.662873] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 2
+[2024-01-12-17:06:53.556634] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-17:07:09.30291] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 5
+[2024-01-12-17:07:45.921228] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 3
+[2024-01-12-17:07:47.135942] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-17:07:47.759350] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 1

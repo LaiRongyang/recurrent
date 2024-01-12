@@ -1,0 +1,17 @@
+[2024-01-12-17:01:37.158146] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:10] [main] --------Start security server--------
+[2024-01-12-17:01:37.158200] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:13] [main] --------init server--------
+[2024-01-12-17:01:37.158211] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:20] [main] --------start server--------
+[2024-01-12-17:01:43.644285] [INFO] [/home/byd/Desktop/recurrent/common/my_socket.cpp:40] [Create] socket id: 5
+[2024-01-12-17:02:05.894248] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:26] [main] --------massage loop--------
+[2024-01-12-17:05:03.52503] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:10] [main] --------Start security server--------
+[2024-01-12-17:05:03.52585] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:13] [main] --------init server--------
+[2024-01-12-17:05:03.52610] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:20] [main] --------start server--------
+[2024-01-12-17:05:04.915364] [INFO] [/home/byd/Desktop/recurrent/common/my_socket.cpp:40] [Create] socket id: 5
+[2024-01-12-17:05:04.915782] [INFO] [/home/byd/Desktop/recurrent/server/server_main.cpp:26] [main] --------massage loop--------
+[2024-01-12-17:08:33.860635] [INFO] [/home/byd/Desktop/recurrent/client/socket_client.cpp:46] [ConnectServer] connect success, socket(4).
+[2024-01-12-17:08:36.262857] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 0
+[2024-01-12-17:08:40.270080] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-17:08:40.270170] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 2
+[2024-01-12-17:08:41.462407] [ERROR] [/home/byd/Desktop/recurrent/client/security_client.cpp:111] [Execute] memcpy failed.
+[2024-01-12-17:08:41.462440] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 5
+[2024-01-12-17:08:47.749982] [INFO] [/home/byd/Desktop/recurrent/client/security_client.cpp:49] [Execute] cmd id: 3

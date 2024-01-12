@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/css-server",
+            "program": "${workspaceFolder}/build/test_random",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
