@@ -30,6 +30,7 @@ std::uint32_t CSecurityServer::ExecuteCreate(LPREQHEAD lpReq)
 
 std::uint32_t CSecurityServer::ExecuteDestory(LPREQHEAD lpReq)
 {
+
     CSecuritySession *pServer = GetServer(lpReq->msg_head.session_id);
     if (nullptr != pServer)
     {
@@ -44,7 +45,7 @@ std::uint32_t CSecurityServer::ExecuteDestory(LPREQHEAD lpReq)
 
 std::uint32_t CSecurityServer::Execute(LPREQHEAD lpReq)
 {
-    CYBERLOG_INFO("cmd id: %d", lpReq->msg_head.cmd_id);
+    CYBERLOG_INFO("execute thread: execute cmd id: %d", lpReq->msg_head.cmd_id);
     std::vector<uint8_t> resp;
     if ((EN_MSG_TYPE_CREATE == lpReq->msg_head.msg_type) ||
              (EN_CMD_ID_CREATE == lpReq->msg_head.cmd_id))
@@ -64,8 +65,9 @@ std::uint32_t CSecurityServer::Execute(LPREQHEAD lpReq)
         resp.resize(MSG_MAX_LENGTH);
         LPRESPHEAD lppResp = reinterpret_cast<LPRESPHEAD>(resp.data());
         lppResp->data_len = nBufLen;
-
+        CYBERLOG_INFO("execute thread: req session id: %d ", lpReq->msg_head.session_id);
         CSecuritySession *pServer = GetServer(lpReq->msg_head.session_id);
+        CYBERLOG_INFO("execute thread: psession %p.", pServer);
         if (nullptr != pServer)
         {
             uint32_t error_code = pServer->ReqExecute(lpReq, resp);
@@ -99,6 +101,7 @@ bool CSecurityServer::massageLoop()
 {
     while (m_bMonitor)
     {
+        CYBERLOG_INFO("execute thread: while start");
         CDataMgr *req;
         if (m_msgQueue.wait(req, 500))
         {
@@ -109,6 +112,7 @@ bool CSecurityServer::massageLoop()
             }
             delete req;
         }
+        CYBERLOG_INFO("execute thread: while end");
     }
     CYBERLOG_INFO("massageLoop end!");
 
@@ -199,6 +203,7 @@ bool CSecurityServer::Remove(CSecuritySession *pServer)
     {
         if (*it == pServer)
         {
+            CYBERLOG_INFO("execute thread: delete psession %p  pServer");
             delete pServer;
             m_lstServer.erase(it);
             break;

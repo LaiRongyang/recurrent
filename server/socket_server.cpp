@@ -47,7 +47,7 @@ std::uint32_t CSocketServer::Send(void *pData, std::int32_t nLen)
         CYBERLOG_ERROR("not find socket.");
         return COM_COMMUNICATION_FAILURE;
     }
-
+   
     ssize_t msg_len = pSocket->Send(pData, nLen);
     if (msg_len <= 0)
     {
@@ -61,6 +61,7 @@ std::uint32_t CSocketServer::Send(void *pData, std::int32_t nLen)
 
 void CSocketServer::MonitorEvent()
 {
+    
     std::int32_t listenfd = m_pSocket->GetSocketId();
     struct epoll_event ev;
     //设置与要处理的事件相关的文件描述符
@@ -76,19 +77,23 @@ void CSocketServer::MonitorEvent()
 
     while (m_bMonitor)
     {
+        CYBERLOG_INFO("socket enevt thread: while start ");
         const std::int32_t timeout = 500;
         nfds = epoll_wait(m_nEpoll, events, MAX_EVENT_COUNT, timeout);
         //处理所发生的所有事件
         // CYBERLOG_DEBUG("epoll: %d, nfds: %d", m_nEpoll, nfds);
-
+        CYBERLOG_INFO("socket enevt thread: epoll wait return ");
         for (std::int32_t i = 0; i < nfds; ++i)
         {
+            
             if (events[i].data.fd == listenfd) //如果新监测到一个SOCKET用户连接到了绑定的SOCKET端口，建立新的连接。
             {
+                CYBERLOG_INFO("socket enevt thread: new connect");
                 if (!(m_pSocket->Accept(connfd)) || (connfd < 0))
                 {
                     continue;
                 }
+                CYBERLOG_INFO("socket enevt thread: new connect socket id %d",connfd);
                 CSocket *socket = new CSocket(connfd);
                 if (nullptr != socket)
                 {
@@ -101,6 +106,7 @@ void CSocketServer::MonitorEvent()
                 }
 
                 CSecuritySession *pServer = new CSecuritySession(++m_nSessionId);
+                CYBERLOG_INFO("socket enevt thread: new connect session id %d",m_nSessionId);
                 if (!Insert(pServer))
                 {
                     socket->Close();
@@ -112,6 +118,8 @@ void CSocketServer::MonitorEvent()
             else if (events[i].events & EPOLLIN) //如果是已经连接的用户，并且收到数据，那么进行读入。
             {
                 sockfd = events[i].data.fd;
+                CYBERLOG_INFO("socket enevt thread: epoll return  socket fd %d can read ",sockfd);
+
                 if (sockfd < 0)
                 {
                     continue;
@@ -130,6 +138,7 @@ void CSocketServer::MonitorEvent()
                         req->MallocData(MSG_MAX_LENGTH);
                         void *pBuf = req->data;
                         std::int32_t nMsgLen = pSocket->Recv(pBuf, MSG_MAX_LENGTH);
+                        CYBERLOG_INFO("socket enevt thread: read from socket fd  %d  %d bytes ",sockfd,nMsgLen);
                         if (nMsgLen > 0)
                         {
                             LPREQHEAD lpReq = reinterpret_cast<LPREQHEAD>(pBuf);
@@ -138,11 +147,12 @@ void CSocketServer::MonitorEvent()
                             {
                                 lpReq->msg_head.session_id = it->first;
                             }
+                            CYBERLOG_ERROR("socket enevt thread: push req to msg queue");
                             m_msgQueue.push(req);
                         }
                         else
                         {
-                            CYBERLOG_ERROR("%d read data failed!", pSocket->GetSocketId());
+                            CYBERLOG_ERROR("socket enevt thread: %d read data failed!", pSocket->GetSocketId());
                             events[i].data.fd = -1;
                         }
                         break;
@@ -151,9 +161,10 @@ void CSocketServer::MonitorEvent()
             }
             else
             {
-                
+                CYBERLOG_INFO("socket enevt thread: epoll other event ");
             }
         }
+        CYBERLOG_INFO("socket enevt thread: while end ");
     }
     CYBERLOG_INFO("Monitor end!");
 }

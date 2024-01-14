@@ -180,8 +180,10 @@ bool CSocket::Send(void *pBuf, std::int32_t nLen)
             }
         }
     }
-
-    if (send(m_hSocket, pBuf, nLen, MSG_NOSIGNAL) < 0)
+     CYBERLOG_INFO("execute thread: send start ");
+     int send_len=send(m_hSocket, pBuf, nLen, MSG_NOSIGNAL);
+     CYBERLOG_INFO("execute thread: send end .send %d bytes",send_len);
+    if ( send_len< 0)
     {
         return false;
     }
@@ -193,11 +195,12 @@ std::int32_t CSocket::Recv(void *pBuf, std::int32_t nLen)
 {
     if (m_hSocket < 0)
     {
-        CYBERLOG_ERROR("socket is invald.socket id: %d", m_hSocket);
+        CYBERLOG_ERROR("socket enevt thread: socket is invald.socket id: %d", m_hSocket);
         return 0;
     }
+    CYBERLOG_INFO("socket enevt thread: recv start");
     ssize_t  ret = recv(m_hSocket, pBuf, nLen, MSG_NOSIGNAL);
-
+    CYBERLOG_INFO("socket enevt thread: recv end");
     return ret;
 }
 
@@ -205,7 +208,7 @@ bool CSocket::Close(void)
 {
     if (m_hSocket > 0)
     {
-        shutdown(m_hSocket, SHUT_RDWR);
+        //shutdown(m_hSocket, SHUT_RDWR);
         if (-1 == close(m_hSocket))
         {
             CYBERLOG_WARN("close socket %d failed.", m_hSocket);

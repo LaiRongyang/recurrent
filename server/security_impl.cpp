@@ -3,7 +3,8 @@
 #include "security_impl.h"
 #include "./../common/message.h"
 #include "./../common/logger.h"
-
+#include <ctime>
+#include <thread>
 #define KEY_LEN_16 16
 #define KEY_LEN_24 24
 #define KEY_LEN_32 32
@@ -22,6 +23,7 @@ CSecurityImpl &CSecurityImpl::getInstance(void)
 {
     static CSecurityImpl instance;
     return instance;
+
 }
 
 std::uint32_t CSecurityImpl::ReqExecute(std::int32_t cmd_id, void *req, std::int32_t req_len, void *resp, std::int32_t *resp_len)
@@ -72,7 +74,9 @@ std::uint32_t CSecurityImpl::GenerateRandom(void *req_data, std::int32_t req_len
         CYBERLOG_ERROR("input data invalid.");
         return COM_INVALID_PARAMETER;
     }
-
+    srand(time(nullptr));
+    int64_t exe_time = rand() % 3;
+    std::this_thread::sleep_for(std::chrono::milliseconds(exe_timed));
     LPREQRANDOM lpIn = reinterpret_cast<LPREQRANDOM>(req_data);
     LPRESPRANDOM lpOut = reinterpret_cast<LPRESPRANDOM>(resp_data);
     std::int8_t *pRand = lpOut->random;
